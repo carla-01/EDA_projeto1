@@ -1,8 +1,6 @@
 package sorting;
 
 public class SelectionSortEstavel {
-
-}
 /* ---------------------------------------------------------------
     * Versão ESTÁVEL
     * Encontra o mínimo, desloca os elementos entre i e min
