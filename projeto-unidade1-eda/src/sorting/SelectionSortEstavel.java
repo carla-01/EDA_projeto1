@@ -1,8 +1,6 @@
 package sorting;
 
 public class SelectionSortEstavel {
-
-}
 /* ---------------------------------------------------------------
     * Versão ESTÁVEL
     * Encontra o mínimo, desloca os elementos entre i e min
@@ -27,8 +25,7 @@ public class SelectionSortEstavel {
             }
         }
     }
- 
-    // ---------------------------------------------------------------
+   
     private static <T> void swap(T[] A, int i, int j) {
         T temp = A[i];
         A[i]   = A[j];
