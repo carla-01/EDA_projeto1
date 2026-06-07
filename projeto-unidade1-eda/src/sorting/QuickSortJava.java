@@ -1,61 +1,25 @@
 package sorting;
 
-import java.util.Comparator;
+import java.util.Arrays;
 
 /**
- * QuickSort (versao do slide).
+ * Wrapper para a ordenação de arrays primitivos inteiros do Java.
  *
- * Estrategia:
- * - Divide: escolhe pivô no inicio e particiona o vetor.
- * - Conquista: ordena recursivamente os lados esquerdo e direito.
- * - Combina: nao precisa mesclar explicitamente (in-place).
+ * Em arrays de tipos primitivos, Arrays.sort(int[]) usa Dual-Pivot QuickSort.
  *
  * Complexidade:
- * - Melhor/medio caso: O(n log n)
- * - Pior caso: O(n^2) quando a particao fica muito desbalanceada
+ * - Medio caso: O(n log n)
+ * - Pior caso: O(n^2) (teorico do quicksort)
  *
- * Propriedades: in-place, nao estavel.
+ * Uso neste projeto: base de comparacao para os experimentos com int[].
  */
-public class QuickSort {
+public final class QuickSortJava {
 
-	/**
-	 * QuickSort clássico com pivô no início, versão do slide.
-	 */
-	public static <T extends Comparable<T>> void sort(T[] A) {
-		sort(A, Comparator.naturalOrder());
+	private QuickSortJava() {
 	}
 
-	public static <T> void sort(T[] A, Comparator<? super T> compResultado) {
+	public static void sort(int[] A) {
 		if (A == null || A.length <= 1) return;
-		quickSort(A, 0, A.length - 1, compResultado);
-	}
-
-	private static <T> void quickSort(T[] A, int left, int right, Comparator<? super T> compResultado) {
-		if (left < right) {
-			int pivot = partition(A, left, right, compResultado);
-			quickSort(A, left, pivot - 1, compResultado);
-			quickSort(A, pivot + 1, right, compResultado);
-		}
-	}
-
-	private static <T> int partition(T[] A, int left, int right, Comparator<? super T> compResultado) {
-		T pivot = A[left];
-		int i = left + 1;
-		int j = right;
-
-		while (i <= j) {
-			if (compResultado.compare(A[i], pivot) <= 0) {
-				i++;
-			} else if (compResultado.compare(A[j], pivot) > 0) {
-				j--;
-			} else {
-				SortUtils.swap(A, i, j);
-				i++;
-				j--;
-			}
-		}
-
-		SortUtils.swap(A, left, j);
-		return j;
+		Arrays.sort(A);
 	}
 }
