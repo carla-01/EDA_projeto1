@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.Comparator;
+
 public class BubbleSort {
 
 /* BUBBLESORT
@@ -9,11 +11,16 @@ public class BubbleSort {
  *   - Θ(n²) em todos os casos */
 
     public static <T extends Comparable<T>> void sort(T[] A) {
+        sort(A, Comparator.naturalOrder());
+    }
+
+    public static <T> void sort(T[] A, Comparator<? super T> compResultado) {
+        if (A == null || A.length <= 1) return;
         int n = A.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - 1 - i; j++) {
-                if (A[j].compareTo(A[j + 1]) > 0) {
-                    swap(A, j, j + 1);
+                if (compResultado.compare(A[j], A[j + 1]) > 0) {
+                    SortUtils.swap(A, j, j + 1);
                 }
             }
         }

@@ -1,17 +1,25 @@
 package sorting;
 
-public class SelectionSortEstavel {
+import java.util.Comparator;
 /* ---------------------------------------------------------------
     * Versão ESTÁVEL
     * Encontra o mínimo, desloca os elementos entre i e min
     * uma posição à direita, e insere o mínimo em i.
 // --------------------------------------------------------------- */
+
+public class SelectionSortEstavel {
+
     public static <T extends Comparable<T>> void sortEstavel(T[] A) {
+        sortEstavel(A, Comparator.naturalOrder());
+    }
+
+    public static <T> void sortEstavel(T[] A, java.util.Comparator<? super T> compResultado) {
+        if (A == null || A.length <= 1) return;
         int n = A.length;
         for (int i = 0; i < n - 1; i++) {
             int min = i;
             for (int j = i + 1; j < n; j++) {
-                if (A[j].compareTo(A[min]) < 0) {
+                if (compResultado.compare(A[j], A[min]) < 0) {
                     min = j;
                 }
             }
@@ -24,11 +32,5 @@ public class SelectionSortEstavel {
                 A[i] = minElem;
             }
         }
-    }
-   
-    private static <T> void swap(T[] A, int i, int j) {
-        T temp = A[i];
-        A[i]   = A[j];
-        A[j]   = temp;
     }
 }
