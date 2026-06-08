@@ -138,28 +138,6 @@ public class TesteDesempenho {
 		if (erro == null) {
 			return new Resultado("sort", algoritmo, cenario, tamanho, total / REPETICOES);
 		}
-		// Tentar fallback para casos conhecidos
-		if ("QuickSort".equals(algoritmo)) {
-			System.out.println("[INFO] Tentando fallback: QuickSortShuffle para " + cenario + " tamanho=" + tamanho);
-			long totalFb = 0L;
-			String fbErro = null;
-			for (int i = 0; i < WARMUP + REPETICOES; i++) {
-				Estudante[] dados = prepararCenarioEstudantes(tamanho, cenario, seedPara("QuickSortShuffle", tamanho, cenario, i));
-				try {
-					long inicio = System.nanoTime();
-					QuickSortShuffleRunner.INSTANCE.sort(dados);
-					long duracao = System.nanoTime() - inicio;
-					if (i >= WARMUP) totalFb += duracao;
-				} catch (Throwable t) {
-					fbErro = t.getClass().getSimpleName();
-					System.out.println("[AVISO] QuickSortShuffle também falhou em " + cenario + " tamanho=" + tamanho + ": " + fbErro);
-					break;
-				}
-			}
-			if (fbErro == null) {
-				return new Resultado("sort", algoritmo + " (fallback: QuickSortShuffle)", cenario, tamanho, totalFb / REPETICOES);
-			}
-		}
 		return new Resultado("sort", algoritmo, cenario, tamanho, -1L);
 	}
 
@@ -198,27 +176,6 @@ public class TesteDesempenho {
 			}
 		}
 		if (erro == null) return new Resultado("search", algoritmo, cenario, tamanho, total / REPETICOES);
-		// Fallbacks conhecidos
-		if ("BuscaLinearRecursiva".equals(algoritmo)) {
-			System.out.println("[INFO] Tentando fallback: BuscaLinearIterativa para " + cenario + " tamanho=" + tamanho);
-			long totalFb = 0L;
-			String fbErro = null;
-			for (int i = 0; i < WARMUP + REPETICOES; i++) {
-				try {
-					long inicio = System.nanoTime();
-					BuscaLinearIterativaRunner.INSTANCE.search(dados, alvo);
-					long duracao = System.nanoTime() - inicio;
-					if (i >= WARMUP) totalFb += duracao;
-				} catch (Throwable t) {
-					fbErro = t.getClass().getSimpleName();
-					System.out.println("[AVISO] BuscaLinearIterativa também falhou em " + cenario + " tamanho=" + tamanho + ": " + fbErro);
-					break;
-				}
-			}
-			if (fbErro == null) {
-				return new Resultado("search", algoritmo + " (fallback: BuscaLinearIterativa)", cenario, tamanho, totalFb / REPETICOES);
-			}
-		}
 		return new Resultado("search", algoritmo, cenario, tamanho, -1L);
 	}
 
