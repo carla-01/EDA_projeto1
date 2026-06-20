@@ -1,17 +1,10 @@
 package sorting;
 
-import java.util.Arrays;
-
 /**
- * Wrapper para a ordenação de arrays primitivos inteiros do Java.
+ * QuickSort clássico para arrays primitivos int[].
  *
- * Em arrays de tipos primitivos, Arrays.sort(int[]) usa Dual-Pivot QuickSort.
- *
- * Complexidade:
- * - Medio caso: O(n log n)
- * - Pior caso: O(n^2) (teorico do quicksort)
- *
- * Uso neste projeto: base de comparacao para os experimentos com int[].
+ * Uso neste projeto: base de comparacao para os experimentos com int[],
+ * confrontando uma implementacao propria com Arrays.sort(int[]).
  */
 public final class QuickSortJava {
 
@@ -20,6 +13,35 @@ public final class QuickSortJava {
 
 	public static void sort(int[] A) {
 		if (A == null || A.length <= 1) return;
-		Arrays.sort(A);
+		quickSort(A, 0, A.length - 1);
+	}
+
+	private static void quickSort(int[] A, int left, int right) {
+		if (left < right) {
+			int pivot = partition(A, left, right);
+			quickSort(A, left, pivot - 1);
+			quickSort(A, pivot + 1, right);
+		}
+	}
+
+	private static int partition(int[] A, int left, int right) {
+		int pivot = A[left];
+		int i = left + 1;
+		int j = right;
+
+		while (i <= j) {
+			if (A[i] <= pivot) {
+				i++;
+			} else if (A[j] > pivot) {
+				j--;
+			} else {
+				SortUtils.swap(A, i, j);
+				i++;
+				j--;
+			}
+		}
+
+		SortUtils.swap(A, left, j);
+		return j;
 	}
 }

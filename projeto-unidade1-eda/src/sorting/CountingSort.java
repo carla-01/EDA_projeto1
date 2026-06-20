@@ -1,5 +1,9 @@
 package sorting;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import model.Estudante;
 
 /**
@@ -13,7 +17,7 @@ import model.Estudante;
  * - Tempo: O(n + k), onde k = (maxNota - minNota + 1)
  * - Memoria extra: O(n + k)
  *
- * Ordem final desta classe: nota decrescente.
+	 * Ordem final desta classe: nota decrescente, com desempate natural de Estudante.
  */
 public class CountingSort {
 
@@ -39,19 +43,26 @@ public class CountingSort {
 			count[estudante.getNota() - minNota]++;
 		}
 
-		// Acumulado para ordem decrescente
+		Estudante[] output = new Estudante[A.length];
+		int[] posicao = new int[range];
 		for (int i = range - 2; i >= 0; i--) {
-			count[i] += count[i + 1];
+			posicao[i] = posicao[i + 1] + count[i + 1];
 		}
 
-		Estudante[] output = new Estudante[A.length];
-		// Percurso reverso para manter estavel
-		for (int i = A.length - 1; i >= 0; i--) {
-			Estudante estudante = A[i];
-			int idx = estudante.getNota() - minNota;
-			int pos = count[idx] - 1;
-			output[pos] = estudante;
-			count[idx]--;
+		@SuppressWarnings("unchecked")
+		List<Estudante>[] buckets = new List[range];
+		for (int i = 0; i < range; i++) {
+			buckets[i] = new ArrayList<Estudante>(count[i]);
+		}
+
+		for (Estudante estudante : A) {
+			buckets[estudante.getNota() - minNota].add(estudante);
+		}
+
+		for (int i = 0; i < range; i++) {
+			Estudante[] bucket = buckets[i].toArray(new Estudante[0]);
+			Arrays.sort(bucket);
+			System.arraycopy(bucket, 0, output, posicao[i], bucket.length);
 		}
 
 		System.arraycopy(output, 0, A, 0, A.length);
