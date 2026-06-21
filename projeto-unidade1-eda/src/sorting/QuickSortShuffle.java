@@ -3,19 +3,7 @@ package sorting;
 import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * QuickSort com embaralhamento previo (shuffle).
- *
- * O vetor e embaralhado antes de chamar o QuickSort classico,
- * reduzindo a chance de cair no pior caso em entradas adversas.
- *
- * Complexidade esperada:
- * - Tempo medio esperado: O(n log n)
- * - Pior caso teorico: O(n^2)
- * - Custo extra do shuffle: O(n)
- *
- * Propriedades: in-place (desconsiderando recursao), nao estavel.
- */
+
 public class QuickSortShuffle {
 
 	/**

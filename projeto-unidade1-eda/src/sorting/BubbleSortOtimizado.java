@@ -4,11 +4,8 @@ import java.util.Comparator;
 
 public class BubbleSortOtimizado {
 
- /* Versão OTIMIZADA do BubbleSort:
- *   - Igual ao slide, mas interrompe se nenhuma troca ocorreu na passagem
- *   - Melhor caso Ω(n) (vetor já ordenado)
- *   - Pior caso Θ(n²)
- */
+
+
     public static <T extends Comparable<T>> void sortOtimizado(T[] A) {
         sortOtimizado(A, Comparator.naturalOrder());
     }

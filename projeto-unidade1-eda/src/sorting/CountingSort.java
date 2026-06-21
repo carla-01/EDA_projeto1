@@ -6,19 +6,6 @@ import java.util.List;
 
 import model.Estudante;
 
-/**
- * CountingSort para objetos Estudante usando a nota como chave.
- *
- * Como counting sort nao ordena objetos diretamente por comparacao,
- * esta implementacao mapeia o campo nota para contadores e reconstrói
- * o array de forma estavel.
- *
- * Complexidade:
- * - Tempo: O(n + k), onde k = (maxNota - minNota + 1)
- * - Memoria extra: O(n + k)
- *
-	 * Ordem final desta classe: nota decrescente, com desempate natural de Estudante.
- */
 public class CountingSort {
 
 	public static void sort(Estudante[] A) {

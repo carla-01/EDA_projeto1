@@ -2,20 +2,7 @@ package sorting;
 
 import java.util.Comparator;
 
-/**
- * QuickSort (versao do slide).
- *
- * Estrategia:
- * - Divide: escolhe pivô no inicio e particiona o vetor.
- * - Conquista: ordena recursivamente os lados esquerdo e direito.
- * - Combina: nao precisa mesclar explicitamente (in-place).
- *
- * Complexidade:
- * - Melhor/medio caso: O(n log n)
- * - Pior caso: O(n^2) quando a particao fica muito desbalanceada
- *
- * Propriedades: in-place, nao estavel.
- */
+
 public class QuickSort {
 
 	/**

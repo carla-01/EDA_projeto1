@@ -1,13 +1,5 @@
 package sorting;
 
-/**
- * MergeSort clássico por divisão e conquista.
- *
- * Características:
- * - Complexidade: O(n log n) em qualquer situação.
- * - Utiliza memória auxiliar para realizar as intercalações.
- * - Mantém a ordem original de elementos iguais (algoritmo estável).
- */
 public class MergeSort {
     public static <T extends Comparable<T>> void sort(T[] A) {
         sort(A, java.util.Comparator.naturalOrder());
@@ -18,10 +10,7 @@ public class MergeSort {
         mergeSort(A, 0, A.length - 1, compResultado);
     }
 
-    /**
-     * Divide o vetor recursivamente em duas partes até restarem
-     * subvetores com apenas um elemento.
-     */
+
     private static <T> void mergeSort(T[] A, int left, int right, java.util.Comparator<? super T> compResultado) {
         if (left < right) {
             int mid = (left + right) / 2;

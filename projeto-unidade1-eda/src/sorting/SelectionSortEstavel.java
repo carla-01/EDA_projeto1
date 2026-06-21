@@ -1,11 +1,7 @@
 package sorting;
 
 import java.util.Comparator;
-/* ---------------------------------------------------------------
-    * Versão ESTÁVEL
-    * Encontra o mínimo, desloca os elementos entre i e min
-    * uma posição à direita, e insere o mínimo em i.
-// --------------------------------------------------------------- */
+
 
 public class SelectionSortEstavel {
 

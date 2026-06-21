@@ -1,19 +1,6 @@
 package sorting;
 
-/**
- * InsertionSort
- *
- * Lógica: semelhante a ordenar cartas na mão.
- * - Para cada elemento j (a partir do 2º), guarda como "key"
- * - Desloca para a direita todos os elementos maiores que key
- * - Insere key na posição correta
- *
- * Complexidade:
- *   - Melhor caso  Ω(n)   — vetor já ordenado (while nunca executa)
- *   - Pior  caso   Θ(n²)  — vetor em ordem inversa
- *
- * Propriedades: in-place, STABLE
- */
+
 
 public class InsertionSort {
      
